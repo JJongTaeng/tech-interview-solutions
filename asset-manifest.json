@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/tech-interview-solutions/static/css/main.17d006ab.css",
-    "main.js": "/tech-interview-solutions/static/js/main.bfc03908.js",
-    "static/js/27.a1b77496.chunk.js": "/tech-interview-solutions/static/js/27.a1b77496.chunk.js",
-    "index.html": "/tech-interview-solutions/index.html"
+    "main.css": "/tech-interview-solutions/static/css/main.7395b98f.css",
+    "main.js": "/tech-interview-solutions/static/js/main.cb31cd19.js",
+    "static/js/27.a1c4a326.chunk.js": "/tech-interview-solutions/static/js/27.a1c4a326.chunk.js",
+    "index.html": "/tech-interview-solutions/index.html",
+    "static/media/index.cjs": "/tech-interview-solutions/static/media/index.bab733886d4c9bd36de5.cjs"
   },
   "entrypoints": [
-    "static/css/main.17d006ab.css",
-    "static/js/main.bfc03908.js"
+    "static/css/main.7395b98f.css",
+    "static/js/main.cb31cd19.js"
   ]
 }
