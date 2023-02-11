@@ -3,7 +3,7 @@ import { Button, Card, Col, Form, Row, Select, Typography } from 'antd';
 import { useSetRecoilState } from 'recoil';
 import { useForm } from 'antd/lib/form/Form';
 import { useNavigate } from 'react-router-dom';
-import { subjectAtom } from '../store/setting';
+import { subjectAtom } from '../store';
 import { ROUTEPATH } from '../types';
 
 function Home() {
