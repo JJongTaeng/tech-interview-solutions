@@ -30,7 +30,7 @@ const solutions = [
       '제목은 목데이터 3번이다.',
       '제목은 목데이터 4번이다.',
     ],
-    answer: 0,
+    answer: 1,
     solution: '목데이터 2번이기 때문에~',
   },
 ];

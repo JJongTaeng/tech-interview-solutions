@@ -1,52 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Card, message, Radio, Space } from 'antd';
+import { Button, Card, Radio, Space } from 'antd';
 import { nanoid } from 'nanoid';
 import { useRecoilValue } from 'recoil';
-import solutionList from '../mock/mockSolutions';
+import questionList from '../mock/mockSolutions';
 import { ROUTEPATH } from '../types';
 import { questionAnswerAtom } from '../store';
 import useQuestion from '../hooks/useQuestion';
 
 const INIT_NUMBER = 1;
 
-function Solutions() {
+function Questions() {
   const param = useParams<{ number: string }>();
   if (!param.number) throw new Error('solution number invalid');
+
   const pageNumber = parseInt(param.number, 10);
   const questionAnswer = useRecoilValue(questionAnswerAtom);
   const { setAnswerByNumber } = useQuestion();
   const [value, setValue] = useState(questionAnswer[pageNumber] || INIT_NUMBER);
   const navigate = useNavigate();
-  const isLastSolution = solutionList.length === pageNumber;
-  const isExceedSolutionNumber = solutionList.length < pageNumber;
-  const solution = solutionList[pageNumber - 1];
-  const nextPageNumber = pageNumber + 1;
-
-  if (isExceedSolutionNumber) {
-    navigate(`${ROUTEPATH.SOLUTIONS}/${solutionList.length}`);
-  }
+  const isLastSolution = questionList.length === pageNumber;
+  const question = questionList[pageNumber - 1];
 
   useEffect(() => {
-    setValue(questionAnswer[pageNumber] || INIT_NUMBER);
+    if (questionList.length < pageNumber) {
+      navigate(`${ROUTEPATH.QUESTIONS}/${questionList.length}`);
+    }
+  }, []);
+
+  useEffect(() => {
+    setValue(questionAnswer[pageNumber - 1] || INIT_NUMBER);
   }, [pageNumber]);
 
   return (
     <Card
-      title={`${pageNumber}. ${solution.title}`}
+      title={`${pageNumber}. ${question.title}`}
       actions={[
         <Button
           key={nanoid()}
           onClick={() => {
+            setAnswerByNumber(pageNumber - 1, value);
             if (isLastSolution) {
-              message.info('마지막 문제입니다.');
+              navigate(`${ROUTEPATH.RESULTS}`);
               return;
             }
-            setAnswerByNumber(pageNumber, value);
-            navigate(`${ROUTEPATH.SOLUTIONS}/${nextPageNumber}`);
+            navigate(`${ROUTEPATH.QUESTIONS}/${pageNumber + 1}`);
           }}
         >
-          다음문제
+          {isLastSolution ? '결과보기' : '다음문제'}
         </Button>,
       ]}
     >
@@ -55,9 +56,9 @@ function Solutions() {
         value={value}
       >
         <Space direction="vertical">
-          {solution.list.map((item, index) => (
+          {question.list.map((item, index) => (
             <div key={nanoid()}>
-              <Radio value={index + 1}>
+              <Radio value={index}>
                 {index + 1}. {item}
               </Radio>
             </div>
@@ -68,4 +69,4 @@ function Solutions() {
   );
 }
 
-export default Solutions;
+export default Questions;

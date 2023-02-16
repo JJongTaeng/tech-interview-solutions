@@ -11,8 +11,10 @@ import {
   StyledFooter,
 } from './components/styled';
 import { GithubIcon } from './components/styled/icon';
-import Solutions from './pages/Solutions';
+import Questions from './pages/Questions';
 import { ROUTEPATH } from './types';
+import Results from './pages/Results';
+import Commentations from './pages/Commentations';
 
 function App() {
   return (
@@ -37,8 +39,13 @@ function App() {
                 <Routes>
                   <Route path={ROUTEPATH.HOME} element={<Home />} />
                   <Route
-                    path={`${ROUTEPATH.SOLUTIONS}/:number`}
-                    element={<Solutions />}
+                    path={`${ROUTEPATH.QUESTIONS}/:number`}
+                    element={<Questions />}
+                  />
+                  <Route path={ROUTEPATH.RESULTS} element={<Results />} />
+                  <Route
+                    path={ROUTEPATH.COMMENTATIONS}
+                    element={<Commentations />}
                   />
                 </Routes>
               </Col>

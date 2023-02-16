@@ -19,7 +19,7 @@ function Home() {
             <Button
               onClick={() => {
                 form.submit();
-                navigate(`${ROUTEPATH.SOLUTIONS}/1`);
+                navigate(`${ROUTEPATH.QUESTIONS}/1`);
               }}
               type="primary"
               htmlType="submit"
